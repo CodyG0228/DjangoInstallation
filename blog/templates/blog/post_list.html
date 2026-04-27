@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Osteopath</title>
-</head>
-<!---THE BODY TAG IS USED FOR ANYTHING THAT IS GOING TO DISPLAY ON-SCREEN--->
-<body>
+{% extends 'blog/base.html' %}
 
-    <p>This is a paragragh</p>
-    <p>Website</p>
-    <header>
-        <h1><a href="/">Django Girls Blog</a></h1>
-    </header>
+{% block content %}
     {% for post in posts %}
-    <article>
-
-        <h2><a href="">{{ post.title }}</a></h2>
-        <p>{{ post.text|linebreaksbr }}</p>
-        <time>{{ post.published_date }}</time>
-    
-    </article>
+        <article class="post">
+            <time class="date">
+                {{ post.published_date }}
+            </time>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </article>
     {% endfor %}
-</body>
-</html>
+{% endblock %}     
